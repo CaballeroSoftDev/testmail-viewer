@@ -26,20 +26,14 @@ export function EmailListItem({ email, isSelected, onSelect }: EmailListItemProp
             <AvatarFallback>{email.from.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
           <div className="flex-grow overflow-hidden text-sm">
-            <p className="font-semibold truncate" title={email.subject}>
-              {email.subject}
-            </p>
+            <p className="font-semibold truncate" title={email.subject}>{email.subject}</p>
             <div className="flex items-center gap-1.5">
               <span className="font-semibold text-card-foreground flex-shrink-0">From:</span>
-              <span className="text-muted-foreground truncate" title={email.from}>
-                {email.from}
-              </span>
+              <span className="text-muted-foreground truncate" title={email.from}>{email.from}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-semibold text-card-foreground flex-shrink-0">To:</span>
-              <span className="text-muted-foreground truncate" title={email.to}>
-                {email.to}
-              </span>
+              <span className="text-muted-foreground truncate" title={email.to}>{email.to}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-semibold text-card-foreground flex-shrink-0">Date:</span>

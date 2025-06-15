@@ -2,8 +2,15 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Separator } from '@/components/ui/separator';
-import { PaginationInfo } from '@/types';
 import { cn } from '@/lib/utils';
+
+interface PaginationInfo {
+  currentPage: number;
+  totalPages: number;
+  from: number;
+  to: number;
+  totalCount: number;
+}
 
 interface EmailListPaginationProps {
   paginationInfo: PaginationInfo;
