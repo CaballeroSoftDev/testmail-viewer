@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { Email, TestMailApiResponse } from '@/lib/types';
 import { toast } from 'sonner';
@@ -60,7 +59,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
     }
   }, [isError, error]);
   
-  const totalPages = data ? Math.ceil(data.count / limit) : 0;
+  const totalPages = data ? Math.ceil(data.count / limit) : 1;
 
   const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTag(e.target.value);
@@ -161,7 +160,10 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
               ))}
             </ul>
           </div>
-           <div className="p-2 flex flex-col md:flex-row gap-2 justify-between items-center border-t mt-auto flex-shrink-0">
+           <div className="p-2 flex flex-col gap-2 md:flex-row justify-between items-center border-t mt-auto flex-shrink-0">
+                <div className="text-xs text-muted-foreground">
+                    {data?.count} total emails
+                </div>
                 <div className="flex items-center gap-4">
                     <Select value={String(limit)} onValueChange={handleLimitChange}>
                         <SelectTrigger className="w-full md:w-[120px] h-9 text-xs">
@@ -173,37 +175,32 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                             <SelectItem value="50">50 per page</SelectItem>
                         </SelectContent>
                     </Select>
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    href="#"
+                                    onClick={(e) => { e.preventDefault(); setPage(p => Math.max(1, p - 1)); }}
+                                    aria-disabled={page <= 1}
+                                    className={cn("text-xs h-9", page <= 1 && "pointer-events-none opacity-50")}
+                                />
+                            </PaginationItem>
+                            <PaginationItem>
+                                <span className="text-xs font-medium px-4 py-2">
+                                    Page {page} of {totalPages}
+                                </span>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationNext
+                                    href="#"
+                                    onClick={(e) => { e.preventDefault(); setPage(p => Math.min(totalPages, p + 1)); }}
+                                    aria-disabled={page >= totalPages}
+                                    className={cn("text-xs h-9", page >= totalPages && "pointer-events-none opacity-50")}
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
                 </div>
-                <Pagination>
-                    <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious
-                                href="#"
-                                onClick={(e) => { e.preventDefault(); setPage(p => Math.max(1, p - 1)); }}
-                                aria-disabled={page <= 1}
-                                className={cn("text-xs h-9", page <= 1 && "pointer-events-none opacity-50")}
-                            />
-                        </PaginationItem>
-                         <PaginationItem>
-                            <span className="text-xs font-medium px-4 py-2">
-                                {page} / {totalPages}
-                            </span>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationNext
-                                href="#"
-                                onClick={(e) => { e.preventDefault(); setPage(p => Math.min(totalPages, p + 1)); }}
-                                aria-disabled={page >= totalPages}
-                                className={cn("text-xs h-9", page >= totalPages && "pointer-events-none opacity-50")}
-                            />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <span className="text-xs text-muted-foreground font-medium p-2 hidden sm:inline-block">
-                                ({data?.count} correos totales)
-                            </span>
-                        </PaginationItem>
-                    </PaginationContent>
-                </Pagination>
             </div>
         </>
       )}
