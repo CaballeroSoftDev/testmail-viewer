@@ -1,8 +1,5 @@
+
 # Welcome to your Lovable project
-
-## Project info
-
-**URL**: https://lovable.dev/projects/53e7cbba-c87c-4684-9e1b-311a8bf6d319
 
 ## How can I edit this code?
 
