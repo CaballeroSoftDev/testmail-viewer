@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { Email, TestMailApiResponse } from '@/lib/types';
 import { toast } from 'sonner';
@@ -14,6 +13,7 @@ import { Button } from './ui/button';
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from './ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Avatar, AvatarFallback } from './ui/avatar';
+import { Separator } from './ui/separator';
 
 interface EmailListProps {
   apiKey: string;
@@ -163,7 +163,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
               ))}
             </ul>
           </div>
-           <div className="p-2 flex flex-col sm:flex-row justify-center items-center gap-6 border-t mt-auto flex-shrink-0">
+           <div className="p-3 flex flex-col items-center gap-3 border-t mt-auto flex-shrink-0">
                 <div className="flex items-center gap-2">
                     <span className="text-xs text-muted-foreground">Rows per page:</span>
                     <Select value={String(limit)} onValueChange={handleLimitChange}>
@@ -178,9 +178,13 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                     </Select>
                 </div>
                 
+                <Separator className="w-full max-w-xs" />
+
                 <div className="text-xs text-muted-foreground font-medium">
                     {from}–{to} of {data?.count}
                 </div>
+
+                <Separator className="w-full max-w-xs" />
 
                 <Pagination>
                     <PaginationContent>
