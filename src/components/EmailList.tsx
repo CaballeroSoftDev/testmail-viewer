@@ -51,7 +51,6 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
     queryKey: ['emails', apiKey, namespace, tag, limit, page],
     queryFn: () => fetchEmails(apiKey, namespace, tag, limit, offset),
     staleTime: 60 * 1000, // 1 minute
-    refetchInterval: 30 * 1000, // 30 seconds
   });
 
   useEffect(() => {
