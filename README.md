@@ -1,4 +1,5 @@
 
+
 # TestMail Email Client
 
 A modern web-based email client application built specifically for viewing and managing emails from TestMail.app. This application provides a clean, responsive interface to browse, filter, and read emails with real-time updates.
@@ -81,18 +82,3 @@ src/
 └── utils/              # Helper utilities
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## Support
-
-If you encounter any issues or have questions, please open an issue in the GitHub repository.
