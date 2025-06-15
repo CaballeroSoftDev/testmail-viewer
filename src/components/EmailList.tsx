@@ -173,9 +173,6 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                             <SelectItem value="50">50 per page</SelectItem>
                         </SelectContent>
                     </Select>
-                    <p className="text-xs text-muted-foreground hidden md:block">
-                        {data?.count} total emails
-                    </p>
                 </div>
                 <Pagination>
                     <PaginationContent>
@@ -199,6 +196,11 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                                 aria-disabled={page >= totalPages}
                                 className={cn("text-xs h-9", page >= totalPages && "pointer-events-none opacity-50")}
                             />
+                        </PaginationItem>
+                        <PaginationItem>
+                            <span className="text-xs text-muted-foreground font-medium p-2 hidden sm:inline-block">
+                                ({data?.count} correos totales)
+                            </span>
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>
