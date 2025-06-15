@@ -1,3 +1,4 @@
+
 import { Email } from '@/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from './ui/avatar';
@@ -32,19 +33,20 @@ export function EmailView({ email }: EmailViewProps) {
             <Avatar className="h-10 w-10">
                 <AvatarFallback>{email.from.charAt(0).toUpperCase()}</AvatarFallback>
             </Avatar>
-            <div className="flex-grow flex flex-col md:flex-row md:items-start justify-between min-w-0">
-                <div className='min-w-0'>
-                    <div className="flex items-baseline gap-2">
-                        <span className="font-semibold text-foreground flex-shrink-0">From:</span>
-                        <span className="text-muted-foreground truncate" title={email.from}>{email.from}</span>
-                    </div>
-                    <div className="flex items-baseline gap-2">
-                        <span className="font-semibold text-foreground flex-shrink-0">To:</span>
-                        <span className="text-muted-foreground truncate" title={email.to}>{email.to}</span>
-                    </div>
+            <div className="flex-grow min-w-0">
+                <div className="flex items-baseline gap-2">
+                    <span className="font-semibold text-foreground flex-shrink-0">From:</span>
+                    <span className="text-muted-foreground truncate" title={email.from}>{email.from}</span>
                 </div>
-                <div className="text-xs text-muted-foreground md:text-right mt-2 md:mt-0 md:pl-4 flex-shrink-0">
-                    {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: enUS })}
+                <div className="flex items-baseline gap-2">
+                    <span className="font-semibold text-foreground flex-shrink-0">To:</span>
+                    <span className="text-muted-foreground truncate" title={email.to}>{email.to}</span>
+                </div>
+                <div className="flex items-baseline gap-2">
+                    <span className="font-semibold text-foreground flex-shrink-0">Date:</span>
+                    <span className="text-xs text-muted-foreground">
+                        {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: enUS })}
+                    </span>
                 </div>
             </div>
         </div>
