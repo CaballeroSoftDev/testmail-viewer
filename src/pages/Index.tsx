@@ -1,3 +1,4 @@
+
 import { useCredentials } from '@/hooks/use-credentials';
 import { EmailClientLayout } from '@/components/EmailClientLayout';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -45,12 +46,12 @@ const Index = () => {
       <header className="flex items-center justify-between p-2 border-b flex-shrink-0">
         <div className="flex items-center gap-2">
           <h1 className="text-xl font-bold tracking-tight">TestMail Viewer</h1>
-          <span className="text-xl font-bold tracking-tight text-muted-foreground">by</span>
+          <span className="text-sm font-medium tracking-tight text-muted-foreground">by</span>
           <a 
             href="https://github.com/CaballeroSoftDev/testmail-viewer" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-xl font-bold tracking-tight text-primary hover:underline"
+            className="text-sm font-medium tracking-tight text-primary hover:underline"
           >
             CaballeroSoftDev
           </a>
