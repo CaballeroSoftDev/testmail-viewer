@@ -163,25 +163,21 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
               ))}
             </ul>
           </div>
-           <div className="p-3 flex flex-col items-center gap-3 border-t mt-auto flex-shrink-0">
-                <div className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground">Rows per page:</span>
+           <div className="p-3 flex flex-col items-center gap-4 border-t mt-auto flex-shrink-0">
+                <div className="flex items-center gap-8">
                     <Select value={String(limit)} onValueChange={handleLimitChange}>
                         <SelectTrigger className="w-auto h-9 text-xs">
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="10">10</SelectItem>
-                            <SelectItem value="25">25</SelectItem>
-                            <SelectItem value="50">50</SelectItem>
+                            <SelectItem value="10">10 per page</SelectItem>
+                            <SelectItem value="25">25 per page</SelectItem>
+                            <SelectItem value="50">50 per page</SelectItem>
                         </SelectContent>
                     </Select>
-                </div>
-                
-                <Separator className="w-full max-w-xs" />
-
-                <div className="text-xs text-muted-foreground font-medium">
-                    {from}–{to} of {data?.count}
+                    <div className="text-xs text-muted-foreground font-medium">
+                        {from}–{to} of {data?.count}
+                    </div>
                 </div>
 
                 <Separator className="w-full max-w-xs" />
