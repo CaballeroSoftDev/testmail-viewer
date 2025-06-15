@@ -1,21 +1,21 @@
-
 import { useState } from 'react';
-import { EmailList } from './EmailList';
+import { EmailList } from './email/EmailList';
 import { EmailView } from './EmailView';
 import { useCredentials } from '@/hooks/use-credentials';
-import { Email } from '@/lib/types';
+import { Email } from '@/types';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from './ui/button';
 
 export function EmailClientLayout() {
-  const { apiKey, namespace } = useCredentials();
+  const { getCredentials } = useCredentials();
   const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
   const isMobile = useIsMobile();
 
-  if (!apiKey || !namespace) {
-    return null; // or a loading/error state
+  const credentials = getCredentials();
+  if (!credentials) {
+    return null;
   }
 
   const handleSelectEmail = (email: Email) => {
@@ -27,8 +27,8 @@ export function EmailClientLayout() {
         <div className="relative overflow-hidden h-full">
             <div className={cn("absolute inset-0 transition-transform duration-300", selectedEmail ? '-translate-x-full' : 'translate-x-0')}>
                 <EmailList
-                    apiKey={apiKey}
-                    namespace={namespace}
+                    apiKey={credentials.apiKey}
+                    namespace={credentials.namespace}
                     onSelectEmail={handleSelectEmail}
                     selectedEmailId={selectedEmail?.id ?? null}
                 />
@@ -51,8 +51,8 @@ export function EmailClientLayout() {
     <div className="flex flex-row h-full rounded-lg border overflow-hidden">
       <div className="w-[380px] border-r flex-shrink-0 bg-background">
         <EmailList
-          apiKey={apiKey}
-          namespace={namespace}
+          apiKey={credentials.apiKey}
+          namespace={credentials.namespace}
           onSelectEmail={handleSelectEmail}
           selectedEmailId={selectedEmail?.id ?? null}
         />

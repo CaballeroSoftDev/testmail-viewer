@@ -1,5 +1,4 @@
-
-import { Email } from '@/lib/types';
+import { Email } from '@/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { format } from 'date-fns';
