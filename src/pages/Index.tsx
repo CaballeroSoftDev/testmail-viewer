@@ -1,10 +1,9 @@
-
 import { useCredentials } from '@/hooks/use-credentials';
 import { EmailClientLayout } from '@/components/EmailClientLayout';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { LogOut, Settings, Github } from 'lucide-react';
+import { LogOut, Settings } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { SettingsModal } from '@/components/SettingsModal';
 
@@ -46,14 +45,13 @@ const Index = () => {
       <header className="flex items-center justify-between p-2 border-b flex-shrink-0">
         <div className="flex items-center gap-2">
           <h1 className="text-xl font-bold tracking-tight">TestMail Viewer</h1>
-          <span className="text-sm text-muted-foreground">by</span>
+          <span className="text-xl font-bold tracking-tight text-muted-foreground">by</span>
           <a 
             href="https://github.com/CaballeroSoftDev/testmail-viewer" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm text-primary hover:underline"
+            className="text-xl font-bold tracking-tight text-primary hover:underline"
           >
-            <Github className="h-4 w-4" />
             CaballeroSoftDev
           </a>
         </div>
