@@ -1,4 +1,3 @@
-
 export interface Email {
   id: string;
   from: string;
@@ -6,6 +5,8 @@ export interface Email {
   html: string;
   to: string;
   timestamp: number;
+  date: number;
+  downloadUrl: string;
 }
 
 export interface TestMailApiResponse {

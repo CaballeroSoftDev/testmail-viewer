@@ -50,7 +50,7 @@ export function EmailClientLayout() {
 
   return (
     <ResizablePanelGroup direction="horizontal" className="flex-grow rounded-lg border">
-      <ResizablePanel defaultSize={30} minSize={20}>
+      <ResizablePanel defaultSize={25} minSize={20}>
         <EmailList
           apiKey={apiKey}
           namespace={namespace}
@@ -59,7 +59,7 @@ export function EmailClientLayout() {
         />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={70}>
+      <ResizablePanel defaultSize={75} minSize={30}>
         <EmailView email={selectedEmail} />
       </ResizablePanel>
     </ResizablePanelGroup>
