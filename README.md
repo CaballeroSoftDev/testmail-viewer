@@ -1,58 +1,98 @@
 
-# Welcome to your Lovable project
+# TestMail Email Client
 
-## How can I edit this code?
+A modern web-based email client application built specifically for viewing and managing emails from TestMail.app. This application provides a clean, responsive interface to browse, filter, and read emails with real-time updates.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- 📧 View emails from TestMail.app API
+- 🔍 Search and filter emails by tags
+- 📱 Responsive design (mobile and desktop)
+- 🎨 Modern UI with dark/light theme support
+- 📄 Pagination support for large email lists
+- 👀 HTML email rendering with safe sandboxing
 
-Simply visit your Lovable project and start prompting.
+## Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+Before running this project, make sure you have:
 
-**Use your preferred IDE**
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+- A TestMail.app account with API access
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Configuration
 
-**Use GitHub Codespaces**
+To use this application, you'll need to configure your TestMail.app credentials:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Open the application in your browser
+2. Click on the Settings icon
+3. Enter your TestMail.app API Key and Namespace
+4. Save the configuration
 
-## What technologies are used for this project?
+## Usage
 
-This project is built with:
+1. **View Emails**: Browse your emails in the left sidebar
+2. **Read Email**: Click on any email to view its content
+3. **Filter**: Use the tag filter to narrow down emails
+4. **Pagination**: Navigate through multiple pages of emails
+5. **Theme**: Toggle between light and dark themes
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Technologies Used
+
+This project is built with modern web technologies:
+
+- **React** - Frontend framework
+- **TypeScript** - Type safety and better development experience
+- **Vite** - Fast build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Modern UI component library
+- **Tanstack Query** - Data fetching and state management
+- **React Router** - Client-side routing
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions and types
+├── pages/              # Application pages
+├── services/           # API service layers
+└── utils/              # Helper utilities
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Support
+
+If you encounter any issues or have questions, please open an issue in the GitHub repository.
