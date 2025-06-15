@@ -162,16 +162,21 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
             </ul>
           </div>
            <div className="p-2 flex flex-col md:flex-row gap-2 justify-between items-center border-t mt-auto flex-shrink-0">
-                <Select value={String(limit)} onValueChange={handleLimitChange}>
-                    <SelectTrigger className="w-full md:w-[120px] h-9 text-xs">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="10">10 / page</SelectItem>
-                        <SelectItem value="25">25 / page</SelectItem>
-                        <SelectItem value="50">50 / page</SelectItem>
-                    </SelectContent>
-                </Select>
+                <div className="flex items-center gap-4">
+                    <Select value={String(limit)} onValueChange={handleLimitChange}>
+                        <SelectTrigger className="w-full md:w-[120px] h-9 text-xs">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="10">10 per page</SelectItem>
+                            <SelectItem value="25">25 per page</SelectItem>
+                            <SelectItem value="50">50 per page</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <p className="text-xs text-muted-foreground hidden md:block">
+                        {data?.count} total emails
+                    </p>
+                </div>
                 <Pagination>
                     <PaginationContent>
                         <PaginationItem>
