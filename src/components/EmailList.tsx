@@ -152,7 +152,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
               ))}
             </ul>
           </div>
-           <div className="p-2 flex flex-col sm:flex-row gap-2 justify-between items-center border-t mt-auto flex-shrink-0">
+           <div className="p-2 flex flex-col md:flex-row gap-2 justify-between items-center border-t mt-auto flex-shrink-0">
                 <Select value={String(limit)} onValueChange={handleLimitChange}>
                     <SelectTrigger className="w-[120px] h-9 text-xs">
                         <SelectValue />
