@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
-import { TestMailApiResponse, EmailFilters, Credentials } from '@/types';
+import { TestMailApiResponse, EmailFilters, Credentials } from '@/lib/types';
 import { IEmailService } from '@/services/email.service';
 
 interface UseEmailsParams {

@@ -1,5 +1,5 @@
 
-import { Email } from '@/types';
+import { Email } from '@/lib/types';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';

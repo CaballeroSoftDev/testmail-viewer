@@ -1,5 +1,5 @@
 
-import { Email } from '@/types';
+import { Email } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle, Inbox, RefreshCcw } from 'lucide-react';

@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import { EmailList } from './email/EmailList';
 import { EmailView } from './EmailView';
 import { useCredentials } from '@/hooks/use-credentials';
-import { Email } from '@/types';
+import { Email } from '@/lib/types';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { ArrowLeft } from 'lucide-react';

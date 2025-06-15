@@ -1,6 +1,6 @@
 
 import { useState, useCallback } from 'react';
-import { EmailFilters } from '@/types';
+import { EmailFilters } from '@/lib/types';
 
 interface UseEmailFiltersReturn {
   filters: EmailFilters;

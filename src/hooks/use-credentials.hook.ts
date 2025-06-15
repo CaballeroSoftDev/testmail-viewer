@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
-import { CredentialsState, Credentials } from '@/types';
+import { CredentialsState, Credentials } from '@/lib/types';
 import { IStorageService } from '@/services/storage.service';
 import { validateCredentials } from '@/utils/validation.utils';
 

@@ -1,5 +1,5 @@
 
-import { TestMailApiResponse, EmailFilters, Credentials } from '@/types';
+import { TestMailApiResponse, EmailFilters, Credentials } from '@/lib/types';
 
 export interface IEmailService {
   fetchEmails(credentials: Credentials, filters: EmailFilters, offset: number): Promise<TestMailApiResponse>;

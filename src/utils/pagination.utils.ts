@@ -1,5 +1,5 @@
 
-import { PaginationInfo } from '@/types';
+import { PaginationInfo } from '@/lib/types';
 
 export const calculatePaginationInfo = (
   currentPage: number,
