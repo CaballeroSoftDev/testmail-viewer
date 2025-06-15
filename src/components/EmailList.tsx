@@ -47,7 +47,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
-  const { data, isLoading, isError, error, refetch } = useQuery<TestMailApiResponse, Error>({
+  const { data, isLoading, isFetching, isError, error, refetch } = useQuery<TestMailApiResponse, Error>({
     queryKey: ['emails', apiKey, namespace, tag, limit, page],
     queryFn: () => fetchEmails(apiKey, namespace, tag, limit, offset),
     staleTime: 60 * 1000, // 1 minute
@@ -82,8 +82,8 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                 onChange={handleTagChange}
                 className="h-9"
             />
-             <Button variant="ghost" size="icon" onClick={() => refetch()} className="h-9 w-9 flex-shrink-0">
-                <RefreshCcw className="h-4 w-4" />
+             <Button variant="ghost" size="icon" onClick={() => refetch()} className="h-9 w-9 flex-shrink-0" disabled={isFetching}>
+                <RefreshCcw className={cn("h-4 w-4", isFetching && "animate-spin")} />
             </Button>
         </div>
       </div>
@@ -118,7 +118,12 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
           </div>
       ) : (
         <>
-          <div className="flex-grow overflow-y-auto">
+          <div className="flex-grow overflow-y-auto relative">
+             {isFetching && !isLoading && (
+              <div className="absolute inset-0 bg-background/50 backdrop-blur-sm flex items-center justify-center z-10">
+                <RefreshCcw className="h-6 w-6 animate-spin text-muted-foreground" />
+              </div>
+            )}
             <ul className="space-y-1 p-2">
               {data.emails.map((email) => (
                 <li key={email.id}>
@@ -135,16 +140,20 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                         </Avatar>
                         <div className="flex-grow overflow-hidden text-sm">
                             <p className="font-semibold truncate" title={email.subject}>{email.subject}</p>
-                            <p className="text-muted-foreground truncate">
-                                <span className="font-semibold text-card-foreground">From: </span>{email.from}
-                            </p>
-                            <p className="text-muted-foreground truncate">
-                                <span className="font-semibold text-card-foreground">To: </span>{email.to}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                                <span className="font-semibold text-card-foreground">Date: </span>
-                                {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: enUS })}
-                            </p>
+                            <div className="flex items-center gap-1.5">
+                                <span className="font-semibold text-card-foreground flex-shrink-0">From:</span>
+                                <span className="text-muted-foreground truncate" title={email.from}>{email.from}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                                <span className="font-semibold text-card-foreground flex-shrink-0">To:</span>
+                                <span className="text-muted-foreground truncate" title={email.to}>{email.to}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                                <span className="font-semibold text-card-foreground flex-shrink-0">Date:</span>
+                                <span className="text-xs text-muted-foreground">
+                                    {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: enUS })}
+                                </span>
+                            </div>
                         </div>
                     </div>
                   </button>
@@ -154,7 +163,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
           </div>
            <div className="p-2 flex flex-col md:flex-row gap-2 justify-between items-center border-t mt-auto flex-shrink-0">
                 <Select value={String(limit)} onValueChange={handleLimitChange}>
-                    <SelectTrigger className="w-[120px] h-9 text-xs">
+                    <SelectTrigger className="w-full md:w-[120px] h-9 text-xs">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -171,7 +180,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                                 onClick={(e) => { e.preventDefault(); setPage(p => Math.max(1, p - 1)); }}
                                 aria-disabled={page <= 1}
                                 className={cn("text-xs h-9", page <= 1 && "pointer-events-none opacity-50")}
-                            >Previous</PaginationPrevious>
+                            />
                         </PaginationItem>
                          <PaginationItem>
                             <span className="text-xs font-medium px-4 py-2">
@@ -184,7 +193,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                                 onClick={(e) => { e.preventDefault(); setPage(p => Math.min(totalPages, p + 1)); }}
                                 aria-disabled={page >= totalPages}
                                 className={cn("text-xs h-9", page >= totalPages && "pointer-events-none opacity-50")}
-                            >Next</PaginationNext>
+                            />
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>

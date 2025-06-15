@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { EmailList } from './EmailList';
 import { EmailView } from './EmailView';
 import { useCredentials } from '@/hooks/use-credentials';
@@ -49,19 +48,18 @@ export function EmailClientLayout() {
   }
 
   return (
-    <ResizablePanelGroup direction="horizontal" className="flex-grow rounded-lg border">
-      <ResizablePanel defaultSize={25} minSize={20}>
+    <div className="flex flex-row h-full rounded-lg border overflow-hidden">
+      <div className="w-[380px] border-r flex-shrink-0 bg-background">
         <EmailList
           apiKey={apiKey}
           namespace={namespace}
           onSelectEmail={handleSelectEmail}
           selectedEmailId={selectedEmail?.id ?? null}
         />
-      </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={75} minSize={30}>
+      </div>
+      <div className="flex-1 min-w-0">
         <EmailView email={selectedEmail} />
-      </ResizablePanel>
-    </ResizablePanelGroup>
+      </div>
+    </div>
   );
 }
