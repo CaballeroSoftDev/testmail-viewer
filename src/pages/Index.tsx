@@ -1,12 +1,53 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useCredentials } from '@/hooks/use-credentials';
+import { SettingsForm } from '@/components/SettingsForm';
+import { EmailClientLayout } from '@/components/EmailClientLayout';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { LogOut } from 'lucide-react';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+  const { hasCredentials, saveCredentials, clearCredentials, isLoading } = useCredentials();
+
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen flex flex-col">
+        <header className="flex items-center justify-between p-2 border-b">
+          <Skeleton className="h-8 w-32" />
+          <Skeleton className="h-10 w-10 rounded-full" />
+        </header>
+        <div className="flex-grow flex items-center justify-center">
+            <div className="w-full max-w-md p-4 space-y-4">
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" />
+            </div>
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="h-screen w-screen flex flex-col bg-background text-foreground">
+      <header className="flex items-center justify-between p-2 border-b flex-shrink-0">
+        <h1 className="text-xl font-bold tracking-tight">TestMail Viewer</h1>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          {hasCredentials && (
+            <Button variant="outline" size="icon" onClick={clearCredentials} aria-label="Cerrar sesión">
+              <LogOut className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      </header>
+      <main className="flex-grow overflow-hidden">
+        {hasCredentials ? (
+          <EmailClientLayout />
+        ) : (
+          <SettingsForm onSave={saveCredentials} />
+        )}
+      </main>
     </div>
   );
 };
