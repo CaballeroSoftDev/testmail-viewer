@@ -1,14 +1,19 @@
+
 import { Email } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 interface EmailViewProps {
   email: Email | null;
 }
 
 export function EmailView({ email }: EmailViewProps) {
+  const isMobile = useIsMobile();
+
   if (!email) {
     return (
       <div className="flex h-full items-center justify-center p-4">
@@ -21,7 +26,7 @@ export function EmailView({ email }: EmailViewProps) {
   }
 
   return (
-    <div className="p-4 h-full flex flex-col bg-background">
+    <div className={cn("h-full flex flex-col bg-background", isMobile ? "px-4 pb-4 pt-14" : "p-4")}>
       <div className="flex-shrink-0 border-b pb-4 mb-4">
         <h1 className="text-2xl font-bold mb-4">{email.subject}</h1>
         <div className="flex items-start gap-4 text-sm">

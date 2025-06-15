@@ -125,7 +125,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                   <button
                     onClick={() => onSelectEmail(email)}
                     className={cn(
-                      "w-full text-left p-2 rounded-lg hover:bg-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      "w-full text-left p-3 rounded-lg hover:bg-accent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       selectedEmailId === email.id ? 'bg-accent' : ''
                     )}
                   >
@@ -135,13 +135,13 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                         </Avatar>
                         <div className="flex-grow overflow-hidden">
                             <div className="flex justify-between items-start">
-                                <p className="font-semibold truncate pr-2" title={email.from}>{email.from}</p>
-                                <p className="text-xs text-muted-foreground flex-shrink-0">
+                                <p className="font-semibold truncate pr-2" title={email.subject}>{email.subject}</p>
+                                <p className="text-xs text-muted-foreground flex-shrink-0 pl-2 whitespace-nowrap">
                                 {formatDistanceToNow(new Date(email.timestamp), { addSuffix: true, locale: es })}
                                 </p>
                             </div>
+                            <p className="text-sm truncate" title={email.from}>{email.from}</p>
                             <p className="text-sm text-muted-foreground truncate" title={email.to}>Para: {email.to}</p>
-                            <p className="font-medium truncate text-sm">{email.subject}</p>
                         </div>
                     </div>
                   </button>
