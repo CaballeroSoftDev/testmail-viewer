@@ -1,8 +1,7 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { Email, TestMailApiResponse } from '@/lib/types';
 import { toast } from 'sonner';
-import { formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -134,14 +133,12 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                             <AvatarFallback>{email.from.charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
                         <div className="flex-grow overflow-hidden">
-                            <div className="flex justify-between items-start">
-                                <p className="font-semibold truncate pr-2" title={email.subject}>{email.subject}</p>
-                                <p className="text-xs text-muted-foreground flex-shrink-0 pl-2 whitespace-nowrap">
-                                {formatDistanceToNow(new Date(email.timestamp), { addSuffix: true, locale: es })}
-                                </p>
-                            </div>
-                            <p className="text-sm truncate" title={email.from}>{email.from}</p>
+                            <p className="font-semibold truncate" title={email.subject}>{email.subject}</p>
+                            <p className="text-sm text-muted-foreground truncate" title={email.from}>De: {email.from}</p>
                             <p className="text-sm text-muted-foreground truncate" title={email.to}>Para: {email.to}</p>
+                            <p className="text-xs text-muted-foreground">
+                                {format(new Date(email.timestamp), "d MMM yyyy", { locale: es })}
+                            </p>
                         </div>
                     </div>
                   </button>
