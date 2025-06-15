@@ -18,9 +18,9 @@ export function SettingsForm({ onSave }: SettingsFormProps) {
     e.preventDefault();
     if (apiKey && namespace) {
       onSave(apiKey, namespace);
-      toast.success('¡Credenciales guardadas!');
+      toast.success('Credentials saved!');
     } else {
-      toast.error('Por favor, completa ambos campos.');
+      toast.error('Please fill in both fields.');
     }
   };
 
@@ -28,8 +28,8 @@ export function SettingsForm({ onSave }: SettingsFormProps) {
     <div className="flex items-center justify-center h-full">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Configuración de TestMail</CardTitle>
-          <CardDescription>Ingresa tu API Key y Namespace para comenzar.</CardDescription>
+          <CardTitle>TestMail Settings</CardTitle>
+          <CardDescription>Enter your API Key and Namespace to get started.</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -38,7 +38,7 @@ export function SettingsForm({ onSave }: SettingsFormProps) {
               <Input
                 id="apiKey"
                 type="text"
-                placeholder="Tu API Key de testmail.app"
+                placeholder="Your testmail.app API Key"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
               />
@@ -48,14 +48,14 @@ export function SettingsForm({ onSave }: SettingsFormProps) {
               <Input
                 id="namespace"
                 type="text"
-                placeholder="Tu Namespace de testmail.app"
+                placeholder="Your testmail.app Namespace"
                 value={namespace}
                 onChange={(e) => setNamespace(e.target.value)}
               />
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">Guardar y ver correos</Button>
+            <Button type="submit" className="w-full">Save and view emails</Button>
           </CardFooter>
         </form>
       </Card>

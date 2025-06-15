@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Email, TestMailApiResponse } from '@/lib/types';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle, Inbox, RefreshCcw } from 'lucide-react';
@@ -35,8 +35,8 @@ async function fetchEmails(apiKey: string, namespace: string, tag: string, limit
   
   const response = await fetch(`https://api.testmail.app/api/json?${params.toString()}`);
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({ message: 'Error de red' }));
-    throw new Error(errorData.message || 'Error al obtener los correos');
+    const errorData = await response.json().catch(() => ({ message: 'Network error' }));
+    throw new Error(errorData.message || 'Error fetching emails');
   }
   return response.json();
 }
@@ -56,7 +56,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
 
   useEffect(() => {
     if (isError) {
-      toast.error(`Error al obtener correos: ${error?.message || 'Error desconocido'}`);
+      toast.error(`Error fetching emails: ${error?.message || 'Unknown error'}`);
     }
   }, [isError, error]);
   
@@ -77,7 +77,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
       <div className="p-2 border-b">
         <div className="flex items-center gap-2">
             <Input 
-                placeholder="Filtrar por etiqueta..." 
+                placeholder="Filter by tag..." 
                 value={tag} 
                 onChange={handleTagChange}
                 className="h-9"
@@ -106,15 +106,15 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
               <AlertCircle className="h-4 w-4" />
               <AlertTitle>Error</AlertTitle>
               <AlertDescription>
-                {error.message || "No se pudieron cargar los correos."}
+                {error.message || "Could not load emails."}
               </AlertDescription>
             </Alert>
          </div>
       ) : !data || data.emails.length === 0 ? (
           <div className="flex flex-col h-full items-center justify-center text-center text-muted-foreground p-4">
               <Inbox className="h-12 w-12 mb-4"/>
-              <h3 className="text-lg font-semibold">Bandeja de entrada vacía</h3>
-              <p className="text-sm">No se encontraron correos para esta búsqueda.</p>
+              <h3 className="text-lg font-semibold">Empty inbox</h3>
+              <p className="text-sm">No emails found for this search.</p>
           </div>
       ) : (
         <>
@@ -143,7 +143,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                             </p>
                             <p className="text-xs text-muted-foreground">
                                 <span className="font-semibold text-card-foreground">Date: </span>
-                                {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: es })}
+                                {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: enUS })}
                             </p>
                         </div>
                     </div>
@@ -158,9 +158,9 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="10">10 / página</SelectItem>
-                        <SelectItem value="25">25 / página</SelectItem>
-                        <SelectItem value="50">50 / página</SelectItem>
+                        <SelectItem value="10">10 / page</SelectItem>
+                        <SelectItem value="25">25 / page</SelectItem>
+                        <SelectItem value="50">50 / page</SelectItem>
                     </SelectContent>
                 </Select>
                 <Pagination>
@@ -171,7 +171,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                                 onClick={(e) => { e.preventDefault(); setPage(p => Math.max(1, p - 1)); }}
                                 aria-disabled={page <= 1}
                                 className={cn("text-xs h-9", page <= 1 && "pointer-events-none opacity-50")}
-                            >Anterior</PaginationPrevious>
+                            >Previous</PaginationPrevious>
                         </PaginationItem>
                          <PaginationItem>
                             <span className="text-xs font-medium px-4 py-2">
@@ -184,7 +184,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                                 onClick={(e) => { e.preventDefault(); setPage(p => Math.min(totalPages, p + 1)); }}
                                 aria-disabled={page >= totalPages}
                                 className={cn("text-xs h-9", page >= totalPages && "pointer-events-none opacity-50")}
-                            >Siguiente</PaginationNext>
+                            >Next</PaginationNext>
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>

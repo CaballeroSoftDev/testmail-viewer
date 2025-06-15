@@ -35,7 +35,7 @@ const Index = () => {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           {hasCredentials && (
-            <Button variant="outline" size="icon" onClick={clearCredentials} aria-label="Cerrar sesión">
+            <Button variant="outline" size="icon" onClick={clearCredentials} aria-label="Log out">
               <LogOut className="h-4 w-4" />
             </Button>
           )}

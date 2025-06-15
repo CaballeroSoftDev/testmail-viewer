@@ -3,7 +3,7 @@ import { Email } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
@@ -18,8 +18,8 @@ export function EmailView({ email }: EmailViewProps) {
     return (
       <div className="flex h-full items-center justify-center p-4">
         <div className="text-center text-muted-foreground">
-          <p className="text-lg">Selecciona un correo para leerlo</p>
-          <p>O usa la barra de búsqueda para encontrar un correo específico.</p>
+          <p className="text-lg">Select an email to read it</p>
+          <p>Or use the search bar to find a specific email.</p>
         </div>
       </div>
     );
@@ -36,16 +36,16 @@ export function EmailView({ email }: EmailViewProps) {
             <div className="flex-grow flex flex-col md:flex-row md:items-start justify-between min-w-0">
                 <div className='min-w-0'>
                     <div className="flex items-baseline gap-2">
-                        <span className="font-semibold text-foreground flex-shrink-0">De:</span>
+                        <span className="font-semibold text-foreground flex-shrink-0">From:</span>
                         <span className="text-muted-foreground truncate" title={email.from}>{email.from}</span>
                     </div>
                     <div className="flex items-baseline gap-2">
-                        <span className="font-semibold text-foreground flex-shrink-0">Para:</span>
+                        <span className="font-semibold text-foreground flex-shrink-0">To:</span>
                         <span className="text-muted-foreground truncate" title={email.to}>{email.to}</span>
                     </div>
                 </div>
                 <div className="text-xs text-muted-foreground md:text-right mt-2 md:mt-0 md:pl-4 flex-shrink-0">
-                    {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: es })}
+                    {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: enUS })}
                 </div>
             </div>
         </div>
