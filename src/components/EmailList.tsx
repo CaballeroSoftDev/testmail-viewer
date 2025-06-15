@@ -1,3 +1,4 @@
+
 import { useQuery } from '@tanstack/react-query';
 import { Email, TestMailApiResponse } from '@/lib/types';
 import { toast } from 'sonner';
@@ -132,12 +133,17 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
                         <Avatar className="h-10 w-10 border">
                             <AvatarFallback>{email.from.charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
-                        <div className="flex-grow overflow-hidden">
+                        <div className="flex-grow overflow-hidden text-sm">
                             <p className="font-semibold truncate" title={email.subject}>{email.subject}</p>
-                            <p className="text-sm text-muted-foreground truncate" title={email.from}>De: {email.from}</p>
-                            <p className="text-sm text-muted-foreground truncate" title={email.to}>Para: {email.to}</p>
+                            <p className="text-muted-foreground truncate">
+                                <span className="font-semibold text-card-foreground">From: </span>{email.from}
+                            </p>
+                            <p className="text-muted-foreground truncate">
+                                <span className="font-semibold text-card-foreground">To: </span>{email.to}
+                            </p>
                             <p className="text-xs text-muted-foreground">
-                                {format(new Date(email.timestamp), "d MMM yyyy", { locale: es })}
+                                <span className="font-semibold text-card-foreground">Date: </span>
+                                {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: es })}
                             </p>
                         </div>
                     </div>
@@ -146,7 +152,7 @@ export function EmailList({ apiKey, namespace, onSelectEmail, selectedEmailId }:
               ))}
             </ul>
           </div>
-           <div className="p-2 flex justify-between items-center border-t mt-auto flex-shrink-0">
+           <div className="p-2 flex flex-col sm:flex-row gap-2 justify-between items-center border-t mt-auto flex-shrink-0">
                 <Select value={String(limit)} onValueChange={handleLimitChange}>
                     <SelectTrigger className="w-[120px] h-9 text-xs">
                         <SelectValue />

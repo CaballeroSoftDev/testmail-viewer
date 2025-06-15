@@ -1,4 +1,3 @@
-
 import { Email } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from './ui/avatar';
@@ -44,7 +43,7 @@ export function EmailView({ email }: EmailViewProps) {
                 </div>
             </div>
             <div className="text-xs text-muted-foreground text-right">
-                {format(new Date(email.timestamp), "d MMM yyyy, HH:mm", { locale: es })}
+                {format(new Date(email.timestamp), "d MMM yyyy, HH:mm:ss", { locale: es })}
             </div>
         </div>
       </div>
