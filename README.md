@@ -7,7 +7,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/53e7cbba-c87c-4684-9e1b-311a8bf6d319) and start prompting.
+Simply visit your Lovable project and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -59,12 +59,8 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/53e7cbba-c87c-4684-9e1b-311a8bf6d319) and click on Share -> Publish.
+You can deploy this project using various hosting platforms like Vercel, Netlify, or any other static site hosting service. Simply build the project with `npm run build` and deploy the `dist` folder.
 
-## Can I connect a custom domain to my Lovable project?
+## Can I connect a custom domain?
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Yes, you can connect a custom domain depending on your hosting platform. Most hosting services provide options to connect custom domains through their dashboard settings.
