@@ -55,7 +55,7 @@ export function EmailView({ email }: EmailViewProps) {
         <iframe
           srcDoc={email.html}
           title={email.subject}
-          sandbox="allow-same-origin allow-popups"
+          sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
           className="w-full h-full border-0 rounded-md bg-white"
         />
       </div>
