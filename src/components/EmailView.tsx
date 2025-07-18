@@ -7,6 +7,18 @@ import { enUS } from 'date-fns/locale';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
+const processEmailHtml = (html: string): string => {
+  // Add target="_blank" to all links to force them to open in new tabs
+  return html.replace(/<a\s+([^>]*?)>/gi, (match, attributes) => {
+    // Check if target is already specified
+    if (attributes.includes('target=')) {
+      return match.replace(/target\s*=\s*["'][^"']*["']/gi, 'target="_blank"');
+    } else {
+      return `<a ${attributes} target="_blank">`;
+    }
+  });
+};
+
 interface EmailViewProps {
   email: Email | null;
 }
@@ -53,7 +65,7 @@ export function EmailView({ email }: EmailViewProps) {
       </div>
       <div className="flex-grow overflow-hidden relative">
         <iframe
-          srcDoc={email.html}
+          srcDoc={processEmailHtml(email.html)}
           title={email.subject}
           sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
           className="w-full h-full border-0 rounded-md bg-white"
